@@ -1,9 +1,13 @@
 pipeline{
     agent   { label 'mavenagent' }
+    environment{
+        PATH = "/opt/apache-maven-3.9.2/bin"
+    }
     stages{
-        stage('vcs'){
+
+        stage('build'){
             steps{
-                git branch: 'main', url: 'https://github.com/snreddyboggu/tweet-trend.git'
+                sh 'mvn clean deploy'
             }
         }
         
